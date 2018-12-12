@@ -1,0 +1,17 @@
+.MenuItem {
+    margin: .5em;
+    padding: .5em;
+    background-color: sandybrown;
+    color: black;
+    border-radius: .5em;
+}
+
+.MenuItem:hover {
+    background-color: #FFB672;
+}
+
+.MenuItem.active {
+    background-color: #DC8C48;
+    border: 1px solid;
+    border-color: #631300 #CDB975 #CDB975 #631300;
+}

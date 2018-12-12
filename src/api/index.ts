@@ -1,10 +1,6 @@
-const API_TEST_DELAY: number = 500
+import { Item } from '../types'
 
-interface Item {
-  id: number,
-  parentId?: number,
-  name: string
-}
+const API_TEST_DELAY: number = 500
 
 interface Items {
   // [key: number]: Item
@@ -14,22 +10,22 @@ interface Items {
 const items: Items = {
   1: {
     id: 1,
-    parentId: undefined,
+    parentId: 0,
     name: 'MenuItem1',
   },
   2: {
     id: 2,
-    parentId: undefined,
+    parentId: 0,
     name: 'MenuItem2',
   },
   3: {
     id: 3,
-    parentId: undefined,
+    parentId: 0,
     name: 'MenuItem3',
   },
   4: {
     id: 4,
-    parentId: undefined,
+    parentId: 0,
     name: 'MenuItem4',
   },
   5: {
@@ -134,15 +130,37 @@ const items: Items = {
   },
 }
 
+export function getItem(id: number): Promise<Item> {
 
-export function getChildren(id: number): Promise<void> {
-
-  return new Promise<void>((resolve: (value: any) => void, reject: (reason?: any) => void) => {
+  // return new Promise<void>((resolve: (value: any) => void, reject: (reason?: any) => void) => {
+  return new Promise<Item>((resolve: (value: Item) => void, reject: (reason?: any) => void) => {
 
     setTimeout(() => {
       if(!!id && !items[id]) reject(`No items exist with id=${id}`)
 
-      const keys: string[] = Object.keys(items).filter(key => items[key].parentId === id)
+      const item: Item = items[id]
+
+      resolve(item)
+
+    }, API_TEST_DELAY)
+  })
+}
+
+
+export function getChildren(id: number = 0): Promise<Item[]> {
+
+  console.log('api__getChildren=id', id)
+
+  return new Promise<Item[]>((resolve: (value: Item[]) => void, reject: (reason?: any) => void) => {
+
+    setTimeout(() => {
+
+      console.log('api__getChildren= id, items[id]', id, !!id ? items[id] : 'items[-no-id-]')
+
+      if(!!id && !items[id]) reject(`No items exist with id=${id}`)
+
+      const keys: string[] = Object.keys(items).filter(key => items[key].parentId === +id)
+      console.log('api__getChildren= Object.keys(items), keys', Object.keys(items), keys)
       const children: Item[] = keys.reduce(function(acc: Item[], key) {
         acc.push(items[key])
         return acc
