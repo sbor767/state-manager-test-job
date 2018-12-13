@@ -1,47 +1,47 @@
-import { Item } from '../types'
+import { MenuItemType } from '../types'
 
 const API_TEST_DELAY: number = 500
 
 interface Items {
   // [key: number]: Item
-  [key: string]: Item
+  [key: string]: MenuItemType
 }
 
 const items: Items = {
   1: {
     id: 1,
     parentId: 0,
-    name: 'MenuItem1',
+    name: 'Section1',
   },
   2: {
     id: 2,
     parentId: 0,
-    name: 'MenuItem2',
+    name: 'Section2',
   },
   3: {
     id: 3,
     parentId: 0,
-    name: 'MenuItem3',
+    name: 'Section3',
   },
   4: {
     id: 4,
     parentId: 0,
-    name: 'MenuItem4',
+    name: 'Section4',
   },
   5: {
     id: 5,
     parentId: 1,
-    name: 'Section1',
+    name: 'Section1.1',
   },
   6: {
     id: 6,
     parentId: 2,
-    name: 'Section2',
+    name: 'Section2.1',
   },
   7: {
     id: 7,
     parentId: 3,
-    name: 'Section3',
+    name: 'Section3.1',
   },
   8: {
     id: 8,
@@ -128,17 +128,32 @@ const items: Items = {
     parentId: 8,
     name: 'Section4.2',
   },
+  25: {
+    id: 25,
+    parentId: 1,
+    name: 'Section1.2',
+  },
+  26: {
+    id: 26,
+    parentId: 1,
+    name: 'Section1.3',
+  },
+  27: {
+    id: 27,
+    parentId: 1,
+    name: 'Section1.4',
+  },
 }
 
-export function getItem(id: number): Promise<Item> {
+export function getItem(id: number): Promise<MenuItemType> {
 
   // return new Promise<void>((resolve: (value: any) => void, reject: (reason?: any) => void) => {
-  return new Promise<Item>((resolve: (value: Item) => void, reject: (reason?: any) => void) => {
+  return new Promise<MenuItemType>((resolve: (value: MenuItemType) => void, reject: (reason?: any) => void) => {
 
     setTimeout(() => {
       if(!!id && !items[id]) reject(`No items exist with id=${id}`)
 
-      const item: Item = items[id]
+      const item: MenuItemType = items[id]
 
       resolve(item)
 
@@ -147,25 +162,24 @@ export function getItem(id: number): Promise<Item> {
 }
 
 
-export function getChildren(id: number = 0): Promise<Item[]> {
+export function getChildren(id: number = 0): Promise<MenuItemType[]> {
 
-  console.log('api__getChildren=id', id)
-
-  return new Promise<Item[]>((resolve: (value: Item[]) => void, reject: (reason?: any) => void) => {
+  return new Promise<MenuItemType[]>((resolve: (value: MenuItemType[]) => void, reject: (reason?: any) => void) => {
 
     setTimeout(() => {
 
-      console.log('api__getChildren= id, items[id]', id, !!id ? items[id] : 'items[-no-id-]')
+      // console.log('api__getChildren= id, items[id]', id, !!id ? items[id] : 'items[-no-id-]')
 
       if(!!id && !items[id]) reject(`No items exist with id=${id}`)
 
       const keys: string[] = Object.keys(items).filter(key => items[key].parentId === +id)
-      console.log('api__getChildren= Object.keys(items), keys', Object.keys(items), keys)
-      const children: Item[] = keys.reduce(function(acc: Item[], key) {
+      // console.log('api__getChildren= keys', keys)
+      const children: MenuItemType[] = keys.reduce(function(acc: MenuItemType[], key) {
         acc.push(items[key])
         return acc
       }, [])
 
+      // console.log('api__getChildren= children', children)
       resolve(children)
 
     }, API_TEST_DELAY)
