@@ -98,7 +98,10 @@ export default class Page extends Component<Props, PageState> {
     }
 
     // @pageStateInStack - sequence number in stack (null if not found).
-    const pageStateInStack: number|null = this.getPageSequenceFromStack(id)
+    const pageStateInStack: number|null = this.getPageIndexFromStack(id)
+    console.log('Page__loadData=pageStateInStack', pageStateInStack)
+    console.log('Page__loadData=state', this.state)
+
 
     // Must reload from API if not in cache or is the root menu item (by specification).
     const isRootItem = pageStateInStack !== null && +stack[pageStateInStack].currentItem.parentId === 0
@@ -155,14 +158,12 @@ export default class Page extends Component<Props, PageState> {
     }
   }
 
-  getPageSequenceFromStack = (id: number): number|null => {
-    this.state.pageStatesStack.forEach((item, sequence) => {
-      if (item.currentItem.id === +id) {
-        return sequence
-      }
-      return null
+  getPageIndexFromStack = (id: number): number|null => {
+    let index = null
+    this.state.pageStatesStack.forEach((item, i) => {
+      if (item.currentItem.id === +id) index = i
     })
-    return null
+    return index
   }
 
 
@@ -255,7 +256,7 @@ export default class Page extends Component<Props, PageState> {
               </div>}
               {/*{!!this.state.receivedFrom ? <div className="Page__sectionReceivedFrom">Received from: {this.state.receivedFrom}</div> : null}*/}
 
-              {/*{console.log('Page__render-return=state', this.state)}*/}
+              {console.log('Page__render-return=state', this.state)}
 
             </Fragment>
           )}
