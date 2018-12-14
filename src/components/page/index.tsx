@@ -202,34 +202,24 @@ export default class Page extends Component<Props, PageState> {
 
 
     return <div className="Page">
-
       <Header/>
-
       <div className="Page__sectionWrapper">
 
         <section className="Page__section">
-
           {this.state.needUpdate ? (
-
             <div className="Page__loading">Loading...</div>
-
           ) : (
-
             <Fragment>
 
               <h1 className="Page_sectionTitle">{`Section${hierarchyCode}`}</h1>
-
               {list.length ? (
-
                 <div className="Page__sectionList">
                   <h2 className="Page__sectionListTitle">{`List${hierarchyCode}`}</h2>
                   {list}
                 </div>
 
               ): (
-
                 <h2 className="Page_sectionNoData">No data</h2>
-
               )}
 
               {!!this.state.receivedFrom && <div className={'Page__sectionReceivedFrom' + (!!this.state.receivedFrom && ` Page__sectionReceivedFrom${this.state.receivedFrom}`)}>
@@ -238,11 +228,9 @@ export default class Page extends Component<Props, PageState> {
 
             </Fragment>
           )}
-
         </section>
 
       </div>
-
     </div>
 
   }

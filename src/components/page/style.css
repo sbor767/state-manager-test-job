@@ -31,16 +31,14 @@
 
 .Page__headerMenuWrapper {
     display: flex;
-    justify-content: center;
+    max-width: var(--max-width);
+    margin: auto;
 }
 
 .Page__headerMenu {
-    max-width: var(--max-width);
-
+    flex: auto;
     display: flex;
     flex-flow: wrap;
-    justify-content: start;
-    align-items: end;
 }
 
 .Page__headerSourceCode {
