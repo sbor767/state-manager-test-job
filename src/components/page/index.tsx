@@ -206,6 +206,7 @@ export default class Page extends Component<Props, PageState> {
               key={`header-menu-${item.id}`}
               id={item.id}
               name={this.getMenuDotCode(i + 1)}
+              isTopMenu
             />
           )}
         </div>

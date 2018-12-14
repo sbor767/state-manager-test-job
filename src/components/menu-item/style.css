@@ -3,6 +3,9 @@
     padding: .5em;
     background-color: sandybrown;
     color: black;
+    border: 1px solid;
+    /*border-color: #CDB975 #631300 #631300 #CDB975;*/
+    border-color: gray dimgray dimgray gray;
     border-radius: .5em;
 }
 
@@ -11,7 +14,8 @@
 }
 
 .MenuItem.active {
-    background-color: #DC8C48;
-    border: 1px solid;
-    border-color: #631300 #CDB975 #CDB975 #631300;
+    background-color: #C3732F;
+    color: white;
+    /*border-color: #631300 #CDB975 #CDB975 #631300;*/
+    border-color: dimgray gray gray dimgray;
 }

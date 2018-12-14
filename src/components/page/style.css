@@ -79,17 +79,18 @@
   position: absolute;
   right: 0;
   top: 0;
-  font-size: small;
+  width: 12em;
+  font-size: x-small;
   padding: .5em;
   border-radius: 0 calc(1rem - 1px);
   background-color: dimgray;
-  color: white;
+  color: black;
 }
 .Page__sectionReceivedFromStack {
-  background-color: #3F5D3F;
+  background-color: #C4FFEB;
 }
 .Page__sectionReceivedFromAPI {
-  background-color: #5D201D;
+  background-color: #FFC4C9;
 }
 
 .Page_sectionNoData {
