@@ -162,8 +162,6 @@ export default class Page extends Component<Props, PageState> {
 
   render() {
 
-    // console.log('Page__render= props state', this.props, this.state)
-
     const Header = () => <header className="Page__header">
       <a href="http://ya.ru" target="_blank">
         <div className="Page__headerSourceCode">Source Code</div>
@@ -193,6 +191,13 @@ export default class Page extends Component<Props, PageState> {
       />
     )
 
+    const hierarchyCode: string = (
+      this.props.id ?
+        !!this.state.currentItem ? this.state.currentItem.hierarchyCode : ''
+      :
+        ' Home'
+    )
+
 
     return <div className="Page">
 
@@ -210,12 +215,12 @@ export default class Page extends Component<Props, PageState> {
 
             <Fragment>
 
-              <h1 className="Page_sectionTitle">{!this.state.currentItem || `Section${this.state.currentItem.hierarchyCode}`}</h1>
+              <h1 className="Page_sectionTitle">{`Section${hierarchyCode}`}</h1>
 
               {list.length ? (
 
                 <div className="Page__sectionList">
-                  <h2 className="Page__sectionListTitle">{!this.state.currentItem || `List${this.state.currentItem.hierarchyCode}`}</h2>
+                  <h2 className="Page__sectionListTitle">{`List${hierarchyCode}`}</h2>
                   {list}
                 </div>
 
@@ -228,8 +233,6 @@ export default class Page extends Component<Props, PageState> {
               {!!this.state.receivedFrom && <div className={'Page__sectionReceivedFrom' + (!!this.state.receivedFrom && ` Page__sectionReceivedFrom${this.state.receivedFrom}`)}>
                 Received from: {this.state.receivedFrom}
               </div>}
-
-              {/*{console.log('Page__render-return=state', this.state)}*/}
 
             </Fragment>
           )}
