@@ -1,8 +1,9 @@
 .MenuItem {
+    flex: 1;
     margin: .5em;
     padding: .5em;
     background-color: sandybrown;
-    color: black;
+    color: var(--color);
     border: 1px solid;
     border-color: gray dimgray dimgray gray;
     border-radius: .5em;

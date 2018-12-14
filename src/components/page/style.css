@@ -1,115 +1,139 @@
 .Page {
-  position: relative;
-  height: 100%;
-  text-align: center;
-  display: flex;
-  flex-flow: column;
-}
-
-.Page__headerSourceCode {
-  position: absolute;
-  right: 1em;
-  top: 1em;
-  font-size: small;
-  padding: .5em;
-  border-radius: .5em;
-  background-color: dimgray;
-  color: white;
-}
-.Page__headerSourceCode:hover {
-  background-color: #575757;
-}
-
-.Page__logo {
-  animation: Page__logo_spin infinite 20s linear;
-  height: 80px;
-}
-
-.Page__title {
-  font-size: 1.5em;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    flex-flow: column;
 }
 
 .Page__header {
-  background-color: #222;
-  padding: 20px 20px 5px;
-  color: white;
+    padding-bottom: .3em;
+    background-color: #222;
+    color: white;
+    position: relative;
 }
 
+.Page_headerTopRowWrapper {
+    display: flex;
+    flex-flow: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.Page__headerLogo {
+    animation: Page__logo_spin infinite 20s linear;
+    height: 5em;
+}
+
+.Page__headerTitle {
+    font-size: 1.5em;
+}
+
+
 .Page__headerMenuWrapper {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .Page__headerMenu {
-  max-width: 35em;
+    max-width: var(--max-width);
 
-  display: flex;
-  flex-flow: wrap;
-  justify-content: space-between;
-  align-items: end;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: start;
+    align-items: end;
+}
+
+
+
+.Page__headerSourceCode {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    font-size: .8em;
+    padding: .5em;
+    border-radius: .5em;
+    background-color: dimgray;
+    color: white;
+}
+
+.Page__headerSourceCode:hover {
+    background-color: #575757;
 }
 
 .Page__sectionWrapper {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 .Page__section {
-  width: 70%; height: 70%;
-  border: 1px solid dimgray;
-  border-radius: 1rem;
-  display: flex;
-  flex-flow: column;
-  position: relative;
+    width: calc(var(--max-width) - 1em);
+    height: 70%;
+    border: 1px solid dimgray;
+    border-radius: 1rem;
+    display: flex;
+    flex-flow: column;
+    position: relative;
 }
+
 .Page__sectionTitle {
 }
+
 .Page__sectionListTitle {
 }
+
 .Page__sectionList {
-  margin: 2em;
-  border: 1px solid green;
-  border-radius: 1em;
-  display: flex;
-  flex-flow: column;
+    margin: 2em;
+    border: 1px solid green;
+    border-radius: 1em;
+    display: flex;
+    flex-flow: column;
 }
+
 .Page__sectionReceivedFrom {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 12em;
-  font-size: x-small;
-  padding: .5em;
-  border-radius: 0 calc(1rem - 1px);
-  background-color: dimgray;
-  color: black;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 12em;
+    font-size: x-small;
+    padding: .5em;
+    border-radius: 0 calc(1rem - 1px);
+    background-color: dimgray;
+    color: black;
 }
+
 .Page__sectionReceivedFromStack {
-  background-color: #C4FFEB;
+    background-color: #C4FFEB;
 }
+
 .Page__sectionReceivedFromAPI {
-  background-color: #FFC4C9;
+    background-color: #FFC4C9;
 }
 
 .Page_sectionNoData {
-  margin: auto;
+    margin: auto;
 }
+
 .Page__loading {
-  margin: auto;
-  font-size: 2em;
-  /*-webkit-animation-name: pulse;*/
-  animation-name: pulse;
-  animation-duration: 700ms;
-  transform-origin: 70% 70%;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
+    margin: auto;
+    font-size: 2em;
+    /*-webkit-animation-name: pulse;*/
+    animation-name: pulse;
+    animation-duration: 700ms;
+    transform-origin: 70% 70%;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
 }
 
 
 @keyframes Page__logo_spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /*
@@ -120,7 +144,13 @@
 }
 */
 @keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
 }

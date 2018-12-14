@@ -162,13 +162,16 @@ export default class Page extends Component<Props, PageState> {
   render() {
 
     const Header = () => <header className="Page__header">
-      <a href="http://ya.ru" target="_blank">
-        <div className="Page__headerSourceCode">Source Code</div>
-      </a>
-      <Link to="/">
-        <img src={'/assets/logo.svg'} className="Page__logo" alt="logo"/>
-      </Link>
-      <h1 className="Page__title">{name}</h1>
+      <div className="Page_headerTopRowWrapper">
+        <Link to="/">
+          <img src={'/assets/logo.svg'} className="Page__headerLogo" alt="logo"/>
+        </Link>
+        <h1 className="Page__headerTitle">State manager</h1>
+
+        <a href="http://ya.ru" target="_blank">
+          <div className="Page__headerSourceCode">Source Code</div>
+        </a>
+      </div>
 
       <div className="Page__headerMenuWrapper">
         <div className="Page__headerMenu">
