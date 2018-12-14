@@ -57,32 +57,56 @@
 .Page__sectionWrapper {
     height: 100%;
     display: flex;
-    justify-content: center;
+    flex-flow: column;
     align-items: center;
 }
 
+.Page__sectionTitle {
+    /*min-height: max-content;*/
+    /*height: 2em;*/
+    padding: 1em 0 .5em;
+}
+
 .Page__section {
-    width: calc(var(--max-width) - 1em);
-    height: 70%;
+    height: calc(100% - 6em);
+    width: calc(var(--max-width) - 2em);
+    margin: auto;
     border: 1px solid dimgray;
     border-radius: 1rem;
+
     display: flex;
     flex-flow: column;
+    justify-content: start;
+    align-items: center;
     position: relative;
 }
 
-.Page__sectionTitle {
+.Page__sectionListTitle {
+    align-self: start;
+    margin: .5em 0 0 2em;
 }
 
-.Page__sectionListTitle {
+.Page__sectionListWrapper {
+
+    height: 100%;
+    width: calc(var(--max-width) - 2em - 1px);
+    display: flex;
+    flex-flow: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: calc(var(--padding) * 1.5) 0;
+    padding: 0 var(--padding);
+    /*border: 1px solid yellow;*/
 }
 
 .Page__sectionList {
-    margin: 2em;
-    border: 1px solid green;
+    height: 100%;
+    width: calc(var(--max-width) - 2 * var(--padding) - 2em - 1px);
+    /*border: 1px solid green;*/
     border-radius: 1em;
     display: flex;
     flex-flow: column;
+
 }
 
 .Page__sectionReceivedFrom {

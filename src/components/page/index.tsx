@@ -166,7 +166,7 @@ export default class Page extends Component<Props, PageState> {
         <Link to="/">
           <img src={'/assets/logo.svg'} className="Page__headerLogo" alt="logo"/>
         </Link>
-        <h1 className="Page__headerTitle">State manager</h1>
+        <div className="Page__headerTitle">State manager</div>
 
         <a href="http://ya.ru" target="_blank">
           <div className="Page__headerSourceCode">Source Code</div>
@@ -204,28 +204,32 @@ export default class Page extends Component<Props, PageState> {
     return <div className="Page">
       <Header/>
       <div className="Page__sectionWrapper">
-
+        <h1 className="Page__sectionTitle">{`Section${hierarchyCode}`}</h1>
         <section className="Page__section">
+
           {this.state.needUpdate ? (
             <div className="Page__loading">Loading...</div>
           ) : (
             <Fragment>
+              <h2 className="Page__sectionListTitle">{`List${hierarchyCode}`}</h2>
+              <div className="Page__sectionListWrapper">
 
-              <h1 className="Page_sectionTitle">{`Section${hierarchyCode}`}</h1>
-              {list.length ? (
-                <div className="Page__sectionList">
-                  <h2 className="Page__sectionListTitle">{`List${hierarchyCode}`}</h2>
-                  {list}
-                </div>
+                {list.length ? (
+                  <div className="Page__sectionList">
 
-              ): (
-                <h2 className="Page_sectionNoData">No data</h2>
-              )}
+                    {list}
+                  </div>
 
-              {!!this.state.receivedFrom && <div className={'Page__sectionReceivedFrom' + (!!this.state.receivedFrom && ` Page__sectionReceivedFrom${this.state.receivedFrom}`)}>
-                Received from: {this.state.receivedFrom}
-              </div>}
+                ) : (
+                  <h2 className="Page_sectionNoData">No data</h2>
+                )}
 
+                {!!this.state.receivedFrom && <div
+                  className={'Page__sectionReceivedFrom' + (!!this.state.receivedFrom && ` Page__sectionReceivedFrom${this.state.receivedFrom}`)}>
+                  Received from: {this.state.receivedFrom}
+                </div>}
+
+              </div>
             </Fragment>
           )}
         </section>

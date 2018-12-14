@@ -1,5 +1,4 @@
 .MenuItem {
-    flex: auto;
     margin: .5em;
     padding: .5em;
     background-color: sandybrown;
@@ -17,4 +16,12 @@
     background-color: #C3732F;
     color: white;
     border-color: dimgray gray gray dimgray;
+}
+
+.MenuItem__navLink {
+    flex: auto;
+}
+
+.MenuItem__link {
+
 }

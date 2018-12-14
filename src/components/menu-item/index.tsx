@@ -12,8 +12,8 @@ export interface Props {
 export default function MenuItem({ id, name, isTopMenu }: Props) {
   const to = `/items/${id}`
   return isTopMenu ? (
-    <NavLink to={to} className="MenuItem">{name}</NavLink>
+    <NavLink to={to} className="MenuItem MenuItem__navLink">{name}</NavLink>
   ) : (
-    <Link to={to} className="MenuItem">{name}</Link>
+    <Link to={to} className="MenuItem MenuItem__link">{name}</Link>
   )
 }

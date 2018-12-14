@@ -3,6 +3,9 @@
     --color: black;
     --bg-color: #EEE;
     --max-width: 35rem;
+
+    --scroll-width: 16px;
+    --padding: var(--scroll-width);
 }
 
 * {
