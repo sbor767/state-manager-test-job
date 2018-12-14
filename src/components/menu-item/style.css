@@ -1,5 +1,5 @@
 .MenuItem {
-    flex: 1;
+    flex: auto;
     margin: .5em;
     padding: .5em;
     background-color: sandybrown;
