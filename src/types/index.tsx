@@ -1,7 +1,7 @@
 export interface MenuItemType {
   id: number
   parentId: number
-  name: string
+  hierarchyCode: string
 }
 
 export interface PageStatesItemType {

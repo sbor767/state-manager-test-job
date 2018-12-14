@@ -3,10 +3,9 @@ import { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 
 import { MenuItemType, PageStatesItemType } from '../../types'
-import { getItem, getChildren } from '../../api'
+import { getItemPromise, getChildrenPromise } from '../../api'
 import MenuItem from '../menu-item'
 import './style.css'
-// import { RouteComponentProps } from "react-router"
 
 
 export interface Props {
@@ -56,7 +55,7 @@ export default class Page extends Component<Props, PageState> {
   componentDidMount(): void {
     // Init menu.
     if(!this.state.menu.length) {
-      getChildren(0)
+      getChildrenPromise(0)
         .then(value => {
           this.setState({menu: value})
         })
@@ -85,7 +84,7 @@ export default class Page extends Component<Props, PageState> {
 
     // Root page - no data need.
     if (+id === 0) {
-      const nullItem: MenuItemType = {id: 0, parentId: 0, name: 'Home'}
+      const nullItem: MenuItemType = {id: 0, parentId: 0, hierarchyCode: ''}
       this.setState({
         needUpdate: false,
         currentItem: nullItem,
@@ -97,7 +96,7 @@ export default class Page extends Component<Props, PageState> {
       return
     }
 
-    // @pageStateInStack - sequence number in stack (null if not found).
+    // @pageStateInStack - index of the page with required id in the stack (null if not found).
     const pageStateInStack: number|null = this.getPageIndexFromStack(id)
     console.log('Page__loadData=pageStateInStack', pageStateInStack)
     console.log('Page__loadData=state', this.state)
@@ -109,7 +108,7 @@ export default class Page extends Component<Props, PageState> {
     // Get from stack.
     if (pageStateInStack !== null && !isRootItem) {
 
-      // Truncate stack if it bigger then need.
+      // Truncate stack if it bigger than need.
       let truncatedStack = [...stack]
       truncatedStack.length = pageStateInStack + 1
 
@@ -126,13 +125,11 @@ export default class Page extends Component<Props, PageState> {
 
       // Get from API.
       Promise.all([
-        getItem(id),
-        getChildren(id)
+        getItemPromise(id),
+        getChildrenPromise(id)
       ])
 
         .then(([currentItem, list]) => {
-
-          // console.log('Page__getData-then= currentItem, list', currentItem, list)
 
           // Add to stack
           // Root menu item must reset the stack.
@@ -140,10 +137,6 @@ export default class Page extends Component<Props, PageState> {
           let newStack = isNextAfterLastInStack && !isRootItem ? [...stack] : []
           newStack.push({currentItem, list})
 
-          // console.log('Page__getData-beforeSetState= state', this.state)
-          // console.log('Page__getData-beforeSetState= new=> currentItem', currentItem)
-          // console.log('Page__getData-beforeSetState= new=> list', list)
-          // console.log('Page__getData-beforeSetState= new=> newStack', newStack)
           this.setState({
             needUpdate: false,
             currentItem,
@@ -167,26 +160,6 @@ export default class Page extends Component<Props, PageState> {
   }
 
 
-  getMenuDotCode = (order: number): string => 'MenuItem' + order
-
-  getDotCode = (item: MenuItemType, order: number): string => {
-    const  getParentDotCode = (): string => {
-      // if (!this.state.pageStatesStack.length) return ''
-      if (+this.props.id === 0) return ''
-
-      let code = ''
-      this.state.pageStatesStack.forEach((item, i) => {
-        code += i === 0 ? '' : '.'
-        code += item.currentItem.id.toString()
-      })
-      return code
-    }
-
-    const parent = getParentDotCode()
-    const code = (item.parentId === 0 ? 'MenuItem' : 'Item') + parent + '.' + order
-    return code
-  }
-
   render() {
 
     // console.log('Page__render= props state', this.props, this.state)
@@ -202,10 +175,10 @@ export default class Page extends Component<Props, PageState> {
 
       <div className="Page__headerMenuWrapper">
         <div className="Page__headerMenu">
-          {this.state.menu.map((item, i) => <MenuItem
+          {this.state.menu.map(item => <MenuItem
               key={`header-menu-${item.id}`}
               id={item.id}
-              name={this.getMenuDotCode(i + 1)}
+              name={`MenuItem${item.hierarchyCode}`}
               isTopMenu
             />
           )}
@@ -213,10 +186,10 @@ export default class Page extends Component<Props, PageState> {
       </div>
     </header>
 
-    const list = this.state.list.map((item, i) => <MenuItem
+    const list = this.state.list.map(item => <MenuItem
         key={`section-menu-${item.id}`}
         id={item.id}
-        name={this.getDotCode(item, i + 1)}
+        name={`Item${item.hierarchyCode}`}
       />
     )
 
@@ -237,12 +210,12 @@ export default class Page extends Component<Props, PageState> {
 
             <Fragment>
 
-              <h1 className="Page_sectionTitle">{!this.state.currentItem || this.state.currentItem.name}</h1>
+              <h1 className="Page_sectionTitle">{!this.state.currentItem || `Section${this.state.currentItem.hierarchyCode}`}</h1>
 
               {list.length ? (
 
                 <div className="Page__sectionList">
-                  <h2 className="Page__sectionListTitle">List???</h2>
+                  <h2 className="Page__sectionListTitle">{!this.state.currentItem || `List${this.state.currentItem.hierarchyCode}`}</h2>
                   {list}
                 </div>
 
@@ -255,9 +228,8 @@ export default class Page extends Component<Props, PageState> {
               {!!this.state.receivedFrom && <div className={'Page__sectionReceivedFrom' + (!!this.state.receivedFrom && ` Page__sectionReceivedFrom${this.state.receivedFrom}`)}>
                 Received from: {this.state.receivedFrom}
               </div>}
-              {/*{!!this.state.receivedFrom ? <div className="Page__sectionReceivedFrom">Received from: {this.state.receivedFrom}</div> : null}*/}
 
-              {console.log('Page__render-return=state', this.state)}
+              {/*{console.log('Page__render-return=state', this.state)}*/}
 
             </Fragment>
           )}
