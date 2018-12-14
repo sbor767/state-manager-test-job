@@ -155,18 +155,14 @@ export function getChildrenPromise(id: number = 0): Promise<MenuItemType[]> {
 
     setTimeout(() => {
 
-      // console.log('api__getChildren= id, items[id]', id, !!id ? items[id] : 'items[-no-id-]')
-
       if(!!id && !items[id]) reject(`No items exist with id=${id}`)
 
       const keys: string[] = Object.keys(items).filter(key => items[key].parentId === +id)
-      // console.log('api__getChildren= keys', keys)
       const children: MenuItemType[] = keys.reduce(function(acc: MenuItemType[], key) {
         acc.push(getItem(+key))
         return acc
       }, [])
 
-      // console.log('api__getChildren= children', children)
       resolve(children)
 
     }, API_TEST_DELAY)

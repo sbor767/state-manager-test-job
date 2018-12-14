@@ -98,17 +98,15 @@ export default class Page extends Component<Props, PageState> {
 
     // @pageStateInStack - index of the page with required id in the stack (null if not found).
     const pageStateInStack: number|null = this.getPageIndexFromStack(id)
-    console.log('Page__loadData=pageStateInStack', pageStateInStack)
-    console.log('Page__loadData=state', this.state)
-
 
     // Must reload from API if not in cache or is the root menu item (by specification).
     const isRootItem = pageStateInStack !== null && +stack[pageStateInStack].currentItem.parentId === 0
 
-    // Get from stack.
+
+    // Found and meets - Get data from the stack.
     if (pageStateInStack !== null && !isRootItem) {
 
-      // Truncate stack if it bigger than need.
+      // Truncate stored stack from redundant data.
       let truncatedStack = [...stack]
       truncatedStack.length = pageStateInStack + 1
 
@@ -123,7 +121,8 @@ export default class Page extends Component<Props, PageState> {
 
     } else {
 
-      // Get from API.
+
+      // Get data from API.
       Promise.all([
         getItemPromise(id),
         getChildrenPromise(id)
@@ -131,7 +130,7 @@ export default class Page extends Component<Props, PageState> {
 
         .then(([currentItem, list]) => {
 
-          // Add to stack
+          // Add new data to stack - to the stack end or instead.
           // Root menu item must reset the stack.
           const isNextAfterLastInStack = stack.length && currentItem.parentId === stack[stack.length - 1].currentItem.id
           let newStack = isNextAfterLastInStack && !isRootItem ? [...stack] : []
