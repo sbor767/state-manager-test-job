@@ -10,7 +10,6 @@
     padding-bottom: .3em;
     background-color: #222;
     color: white;
-    position: relative;
 }
 
 .Page__headerInner {
@@ -22,6 +21,7 @@
     display: flex;
     flex-flow: nowrap;
     align-items: center;
+    position: relative;
 }
 
 .Page__headerLogo {

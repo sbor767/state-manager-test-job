@@ -169,7 +169,7 @@ export default class Page extends Component<Props, PageState> {
           </Link>
           <div className="Page__headerTitle">State manager</div>
 
-          <a href="http://ya.ru" target="_blank">
+          <a href="https://github.com/sbor767/state-manager-test-job" target="_blank">
             <div className="Page__headerSourceCode">Source Code</div>
           </a>
         </div>
