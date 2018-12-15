@@ -162,26 +162,28 @@ export default class Page extends Component<Props, PageState> {
   render() {
 
     const Header = () => <header className="Page__header">
-      <div className="Page_headerTopRowWrapper">
-        <Link to="/">
-          <img src={'/assets/logo.svg'} className="Page__headerLogo" alt="logo"/>
-        </Link>
-        <div className="Page__headerTitle">State manager</div>
+      <div className="Page__headerInner">
+        <div className="Page_headerTopRowWrapper">
+          <Link to="/">
+            <img src={'/assets/logo.svg'} className="Page__headerLogo" alt="logo"/>
+          </Link>
+          <div className="Page__headerTitle">State manager</div>
 
-        <a href="http://ya.ru" target="_blank">
-          <div className="Page__headerSourceCode">Source Code</div>
-        </a>
-      </div>
+          <a href="http://ya.ru" target="_blank">
+            <div className="Page__headerSourceCode">Source Code</div>
+          </a>
+        </div>
 
-      <div className="Page__headerMenuWrapper">
-        <div className="Page__headerMenu">
-          {this.state.menu.map(item => <MenuItem
-              key={`header-menu-${item.id}`}
-              id={item.id}
-              name={`MenuItem${item.hierarchyCode}`}
-              isTopMenu
-            />
-          )}
+        <div className="Page__headerMenuWrapper">
+          <div className="Page__headerMenu">
+            {this.state.menu.map(item => <MenuItem
+                key={`header-menu-${item.id}`}
+                id={item.id}
+                name={`MenuItem${item.hierarchyCode}`}
+                isTopMenu
+              />
+            )}
+          </div>
         </div>
       </div>
     </header>

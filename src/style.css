@@ -1,11 +1,18 @@
 :root {
+    --page-width: 90vw;
+    --scroll-width: 16px;
+    --padding: var(--scroll-width);
+
     font: calc(.5em + 1vw)/1.2 normal Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
     --color: black;
     --bg-color: #EEE;
-    --max-width: 35rem;
+}
 
-    --scroll-width: 16px;
-    --padding: var(--scroll-width);
+@media (min-width: 50em) {
+    :root {
+        --page-width: 45em;
+        font-size: 1em;
+    }
 }
 
 * {
