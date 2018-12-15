@@ -1,5 +1,5 @@
 .MenuItem {
-    min-height: max-content;
+    flex: none; /* This need for Ios Safari - to fix heights. */
     margin: .5em;
     padding: .5em;
     background-color: sandybrown;
