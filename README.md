@@ -2,7 +2,7 @@
 *TL;DR*<br>
 A simple SPA application that retains its state when navigating to other pages and allows you to restore it from the cache when you return by the browser button `Back`.
 
-##Test task Description for the TypeScript developer
+## Test task Description for the TypeScript developer
 1) You are working on a project that is a typical SPA application. It also has navigation through a typical menu.
 2) Each menu item leads to a section (`Section1`, `Section2`), in which you can also go to subsection (`Section1.n`, `Section2.n`, ..).
 3) The number of subsections is dynamic, those configuration may come with server (on the task itself is not directly related).
@@ -15,13 +15,13 @@ A simple SPA application that retains its state when navigating to other pages a
 10) Menu is always available.
 11) When you click on `any root section` in the menu at any time, the list in this root partition should be downloaded again, even if we have already entered to it and downloaded this list last time.
 
-##Must be implemented conditions
+## Must be implemented conditions
 1) To implement the task, you need to use `React.js` or `Vue2`.
 2) The task **must be** executed in `TypeScript`.
 3) It is not forbidden to use any helpers, etc., but the kernel **must be** written by you.
 4) Data load emulation can be used through `Promise.resolve`.
 
-##An example of the desired behavior of the program
+## An example of the desired behavior of the program
 1) Clicked on `MenuItem1`.
 2) There was a transition to `Section1`. Triggered `List1` autoload (with items `Item1.1`..`Item1.n`).
 3) Clicked on `Item1.1`, there was a transition to `Section1.1` and triggered `List1.1` autoload (with items `Item1.1.1`..`Item1.1.n`).
@@ -33,10 +33,11 @@ A simple SPA application that retains its state when navigating to other pages a
 9) `List1`, `List1.1`, `List1.1.1` removed from the heap.
 10) Clicked on `MenuItem1`. There was a transition to `Section1`. Triggered `List1` autoload, `List2` removed from the heap and so on.
 
-##Implementation
+## Implementation
+
 Selected `React.js` + `ReactRouter` libraries without `Redux` as the task is easier to implement without using it. For educational purposes, state storage was used inside the components, although it would be more convenient to store them in the states of the `ReactRouter`.
 
-##Example website
+## Example website
 [State manager](https://www.state-manager-test-job.stripway.ru) - feel free to test it.
 
 ## Dependencies
