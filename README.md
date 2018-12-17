@@ -21,7 +21,7 @@ A simple SPA application that retains its state when navigating to other pages a
 3) It is not forbidden to use any helpers, etc., but the kernel **must be** written by you.
 4) Data load emulation can be used through `Promise.resolve`.
 
-## An example of the desired behavior of the program
+## An example of the desired program behavior
 1) Clicked on `MenuItem1`.
 2) There was a transition to `Section1`. Triggered `List1` autoload (with items `Item1.1`..`Item1.n`).
 3) Clicked on `Item1.1`, there was a transition to `Section1.1` and triggered `List1.1` autoload (with items `Item1.1.1`..`Item1.1.n`).
